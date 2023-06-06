@@ -4,7 +4,7 @@ function handleCreateClick(){
       url: "/create",
       type: "POST",
 // !!CHANGE HERE
-      data: {identifier:$("#identifier").val(),name:$("#name").val()},
+      data: {identifier:$("#identifier").val(),name:$("#name").val(),debt:$("#debt").val()},
       success: function(data){
           if (data.error)
             alert("bad create");
@@ -29,7 +29,7 @@ function handleReadClick(){
             alert("good read");
             $("#name").val(data.name);
             $("#grade").val(data.grade);
-
+            $("#debt").val(data.debt);
           }
         } ,
       dataType: "json"
@@ -41,7 +41,7 @@ function handleUpdateClick(){
     $.ajax({
       url: "/update",
       type: "PUT",
-      data: {identifier:$("#identifier").val(),name:$("#name").val()},
+      data: {identifier:$("#identifier").val(),name:$("#name").val(),debt:$("#debt").val()},
       success: function(data){
           if (data.error)
             alert("bad update");

@@ -19,7 +19,7 @@ myDatabase.prototype.postStudent = function(student) {
       return false;
     }
   }
-    this.students[studentIndex++] = new Student(student.id,student.name);
+    this.students[studentIndex++] = new Student(student.id,student.name,student.debt);
     return true;
 }
 //similar to read
@@ -27,7 +27,7 @@ myDatabase.prototype.getStudent = function(id) {
   for (let i=0;i<this.students.length;i++) {
     if (this.students[i] && id == this.students[i].id)
         {
-      return(new Student(this.students[i].id,this.students[i].name));
+      return(new Student(this.students[i].id,this.students[i].name,this.students[i].debt));
         }
   }
     return null;
@@ -36,7 +36,7 @@ myDatabase.prototype.getStudent = function(id) {
 myDatabase.prototype.putStudent = function(student) {
   for (let i=0;i<this.students.length;i++) {
     if (this.students[i] && this.students[i].id == student.id) {
-      this.students[i] = new Student(student.id,student.name);
+      this.students[i] = new Student(student.id,student.name,student.debt);
       return true;
     }
   }

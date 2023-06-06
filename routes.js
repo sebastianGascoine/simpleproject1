@@ -22,6 +22,7 @@ database = new myDatabase();
 router.post('/create', function(req, res){
    let identifier = Number(req.body.identifier.trim());
    let name = String(req.body.name.trim());
+   let debt = Number(req.body.debt.trim());
 
     if (identifier == "") {
         res.json({error:true});
@@ -39,8 +40,10 @@ router.post('/create', function(req, res){
 //keep above
     console.log("create id = " + identifier);
     console.log("create name = " + name);
+    console.log("create debt = " + debt);
 
-    database.postStudent(new Student(Number(identifier),String(name)));
+
+    database.postStudent(new Student(Number(identifier),String(name),Number(debt)));
     database.displayStudents();
     res.json({error:false});
 });
@@ -66,7 +69,9 @@ router.get('/read', function(req, res){
       let booldrives = (drives.toLowerCase() === 'true'); //returns true
       console.log("read id = " + tempRead.id);
       console.log("read name = " + tempRead.name);
-      res.json({error:false,name:tempRead.name});
+      console.log("read debt = " + tempRead.debt);
+
+      res.json({error:false,name:tempRead.name,debt:tempRead.debt});
       return;
     } else{
       res.json({error:true});
@@ -77,6 +82,7 @@ router.get('/read', function(req, res){
 router.put('/update', function(req, res){
    let identifier = Number(req.body.identifier.trim());
    let name = String(req.body.name.trim());
+   let debt = Number(req.body.debt.trim());
 
     if (req.body.identifier == "") {
         res.json({error:true});
@@ -92,9 +98,10 @@ router.put('/update', function(req, res){
         return;
     }
 //keep above
-    if(database.putStudent(new Student(identifier,name))){ //if id input is already in database
+    if(database.putStudent(new Student(identifier,name,debt))){ //if id input is already in database
       console.log("update id = " + identifier);
       console.log("update name = " + name);
+      console.log("update debt = " + debt);
       res.json({error:false});
       return;
     } else{

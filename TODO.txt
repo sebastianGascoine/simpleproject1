@@ -1,0 +1,18 @@
+FROM PROJECT IDEA
+Simple CRUD program to track kaitlins debt
+Run on pc then 7010 server
+Reqs:
+Add debt button + amt - DONE
+Total debt
+Remove debt
+Macbook payments (dated)
+Over due payments bar
+Total payed to date
+Gross debt
+
+CODE STUFFs
+
+rename student class
+add total debt to HTML file
+run code on server
+look into making easier CRUD on phone
