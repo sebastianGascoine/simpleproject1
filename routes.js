@@ -77,8 +77,6 @@ router.get('/read', function(req, res){
 router.put('/update', function(req, res){
    let identifier = Number(req.body.identifier.trim());
    let name = String(req.body.name.trim());
-   let grade = Number(req.body.grade.trim());
-   let drives = req.body.drives;
 
     if (req.body.identifier == "") {
         res.json({error:true});
@@ -94,7 +92,7 @@ router.put('/update', function(req, res){
         return;
     }
 //keep above
-    if(database.putStudent(new Client(identifier,name,grade,drives))){ //if id input is already in database
+    if(database.putStudent(new Student(identifier,name))){ //if id input is already in database
       console.log("update id = " + identifier);
       console.log("update name = " + name);
       res.json({error:false});
@@ -125,127 +123,3 @@ router.delete('/delete/:identifier', function(req, res){
 });
 
 module.exports = router;
-
-//old create
-/*
-router.post('/create', function(req, res){
-   let identifier = Number(req.body.identifier.trim());
-   let name = String(req.body.name.trim());
-   index = array.length;
-
-    if (req.body.identifier == "") {
-        res.json({error:true});
-        return;
-    }
-    if (Number.isNaN(identifier)) {
-        res.json({error:true});
-        return;
-    }
-
-    if (name == "") {
-        res.json({error:true});
-        return;
-    }
-    for(let j of array)
-    {
-      if(j.id == identifier){ //if id input is already in database
-        res.json({error:true});
-        return;
-      }
-    }
-
-    console.log("id = " + identifier);
-    console.log("name = " + name);
-    console.log("index = " + index);
-    array[index++] = new Client(identifier,name);
-    res.json({error:false});
-});  //good old code
-*/
-//old read
-/*
-router.get('/read', function(req, res){
-
-    let identifier = Number(req.query.identifier.trim());
-
-    if (req.query.identifier == "") { //empty id
-        res.json({error:true});
-        return;
-    }
-    if (Number.isNaN(identifier)) { //if id is not a #
-        res.json({error:true});
-        return;
-    }
-
-    for(let j of array)
-    {
-      if(j.id == identifier){ //if any array ids = input id print
-        console.log("read id = " + j.id);
-        console.log("read name = " + j.name);
-        res.json({error:false,name:j.name});
-        return;
-      }
-    }
-    res.json({error:true});
-
-}); //good
-*/
-//old update
-/*
-router.put('/update', function(req, res){
-  let identifier = Number(req.body.identifier.trim());
-  let name = String(req.body.name.trim());
-
-
-  if (req.body.identifier == "") {
-      res.json({error:true});
-      return;
-  }
-  if (Number.isNaN(identifier)) {
-      res.json({error:true});
-      return;
-  }
-
-  if (name == "") {
-      res.json({error:true});
-      return;
-  }
-  for(let j of array)
-  {
-    if(j.id == identifier){ //if id input is already in database
-      j.name = name;
-      console.log("id = " + identifier);
-      console.log("name = " + name);
-      res.json({error:false});
-      return;
-    }
-  }
-  res.json({error:true});
-});
-*/
-//old delete
-/*
-router.delete('/delete/:identifier', function(req, res){
-   let identifier = Number(req.params.identifier.trim());
-
-    if (req.body.identifier == "") {
-        res.json({error:true});
-        return;
-    }
-    if (Number.isNaN(identifier)) {
-        res.json({error:true});
-        return;
-    }
-
-    for(let j of array)
-    {
-      if(j.id == identifier){ //sorts out everything that match id
-        array = array.filter(idf => idf.id != identifier);
-        console.log(array);
-        res.json({error:false});
-        return;
-      }
-    }
-    res.json({error:true});
-
-});
-*/

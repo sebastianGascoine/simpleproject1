@@ -3,6 +3,7 @@ function handleCreateClick(){
     $.ajax({
       url: "/create",
       type: "POST",
+// !!CHANGE HERE
       data: {identifier:$("#identifier").val(),name:$("#name").val()},
       success: function(data){
           if (data.error)
@@ -24,6 +25,7 @@ function handleReadClick(){
           if (data.error){
             alert("bad read");
           } else {
+// !!CHANGE HERE
             alert("good read");
             $("#name").val(data.name);
             $("#grade").val(data.grade);
